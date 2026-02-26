@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cryptography Website - Learn & Encrypt</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">🔐 CryptoLearn</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#ciphers">Ciphers</a></li>
+                <li><a href="#tools">Tools</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Welcome to CryptoLearn</h1>
+            <p>Master the art of cryptography - from classical ciphers to modern encryption</p>
+            <button class="cta-button">Start Learning</button>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Classical Cryptography Section -->
+        <section id="ciphers" class="ciphers-section">
+            <h2>Classical Cryptography</h2>
+            
+            <!-- Caesar Cipher -->
+            <div class="cipher-card">
+                <h3>🔤 Caesar Cipher</h3>
+                <p class="description">The Caesar cipher shifts each letter by a fixed number of positions in the alphabet.</p>
+                
+                <div class="cipher-tool">
+                    <textarea id="caesar-input" placeholder="Enter your message..."></textarea>
+                    <div class="input-group">
+                        <label>Shift Value (1-25):</label>
+                        <input type="number" id="caesar-shift" min="1" max="25" value="3">
+                    </div>
+                    <div class="button-group">
+                        <button onclick="encryptCaesar()">Encrypt</button>
+                        <button onclick="decryptCaesar()">Decrypt</button>
+                    </div>
+                    <textarea id="caesar-output" placeholder="Result..." readonly></textarea>
+                </div>
+            </div>
+
+            <!-- General Shift Cipher -->
+            <div class="cipher-card">
+                <h3>⬆️ General Shift Cipher</h3>
+                <p class="description">Similar to Caesar cipher but can apply different shifts to different letters.</p>
+                
+                <div class="cipher-tool">
+                    <textarea id="shift-input" placeholder="Enter your message..."></textarea>
+                    <div class="input-group">
+                        <label>Shift Value (1-25):</label>
+                        <input type="number" id="shift-value" min="1" max="25" value="5">
+                    </div>
+                    <div class="button-group">
+                        <button onclick="encryptShift()">Encrypt</button>
+                        <button onclick="decryptShift()">Decrypt</button>
+                    </div>
+                    <textarea id="shift-output" placeholder="Result..." readonly></textarea>
+                </div>
+            </div>
+
+            <!-- Affine Cipher -->
+            <div class="cipher-card">
+                <h3>📐 Affine Cipher</h3>
+                <p class="description">Uses the formula: E(x) = (ax + b) mod 26, where a and b are keys.</p>
+                
+                <div class="cipher-tool">
+                    <textarea id="affine-input" placeholder="Enter your message..."></textarea>
+                    <div class="input-group">
+                        <label>Multiplier (a): </label>
+                        <input type="number" id="affine-a" min="1" max="25" value="5">
+                        <label>Shift (b): </label>
+                        <input type="number" id="affine-b" min="0" max="25" value="8">
+                    </div>
+                    <div class="button-group">
+                        <button onclick="encryptAffine()">Encrypt</button>
+                        <button onclick="decryptAffine()">Decrypt</button>
+                    </div>
+                    <textarea id="affine-output" placeholder="Result..." readonly></textarea>
+                </div>
+            </div>
+
+            <!-- Transposition Cipher -->
+            <div class="cipher-card">
+                <h3>🔄 Transposition Cipher</h3>
+                <p class="description">Rearranges the letters of the message without changing them.</p>
+                
+                <div class="cipher-tool">
+                    <textarea id="transposition-input" placeholder="Enter your message..."></textarea>
+                    <div class="input-group">
+                        <label>Key (number of columns):</label>
+                        <input type="number" id="transposition-key" min="2" max="20" value="4">
+                    </div>
+                    <div class="button-group">
+                        <button onclick="encryptTransposition()">Encrypt</button>
+                        <button onclick="decryptTransposition()">Decrypt</button>
+                    </div>
+                    <textarea id="transposition-output" placeholder="Result..." readonly></textarea>
+                </div>
+            </div>
+        </section>
+
+        <!-- RSA Cryptography Section -->
+        <section id="rsa" class="rsa-section">
+            <h2>RSA Cryptography</h2>
+            
+            <div class="cipher-card">
+                <h3>🔒 RSA Encryption</h3>
+                <p class="description">Modern asymmetric encryption using public and private keys.</p>
+                
+                <div class="cipher-tool">
+                    <div class="info-box">
+                        <p><strong>Note:</strong> This is a simplified educational demonstration. Real RSA uses much larger numbers.</p>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label>Prime Number 1 (p):</label>
+                        <input type="number" id="rsa-p" value="61">
+                        <label>Prime Number 2 (q):</label>
+                        <input type="number" id="rsa-q" value="53">
+                    </div>
+                    
+                    <button onclick="generateRSAKeys()" class="generate-btn">Generate Keys</button>
+                    
+                    <div id="rsa-keys" style="display:none;">
+                        <div class="key-display">
+                            <label>Public Key (n, e):</label>
+                            <input type="text" id="rsa-public-key" readonly>
+                        </div>
+                        <div class="key-display">
+                            <label>Private Key (n, d):</label>
+                            <input type="text" id="rsa-private-key" readonly>
+                        </div>
+                    </div>
+                    
+                    <textarea id="rsa-input" placeholder="Enter message (single character or number)..."></textarea>
+                    
+                    <div class="button-group">
+                        <button onclick="encryptRSA()">Encrypt</button>
+                        <button onclick="decryptRSA()">Decrypt</button>
+                    </div>
+                    
+                    <textarea id="rsa-output" placeholder="Result..." readonly></textarea>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about-section">
+            <h2>About Cryptography</h2>
+            <div class="about-content">
+                <h3>What is Cryptography?</h3>
+                <p>Cryptography is the practice and study of techniques for secure communication in the presence of adversaries. It involves transforming readable information (plaintext) into an unreadable format (ciphertext) using mathematical algorithms and keys.</p>
+                
+                <h3>Types of Cryptography</h3>
+                <ul>
+                    <li><strong>Symmetric Cryptography:</strong> Uses the same key for encryption and decryption</li>
+                    <li><strong>Asymmetric Cryptography:</strong> Uses a public key for encryption and a private key for decryption</li>
+                    <li><strong>Hash Functions:</strong> One-way functions that produce fixed-size outputs</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2026 CryptoLearn. Created for educational purposes.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
